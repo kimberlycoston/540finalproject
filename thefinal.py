@@ -2,6 +2,7 @@ import os  # Always import os before using it
 from dotenv import load_dotenv  # dotenv is loaded to manage environment variables
 from openai import OpenAI  # Import OpenAI after supporting modules
 import requests
+import git
 from diffusers import StableDiffusionPipeline  # For image generation
 import torch  # For running Stable Diffusion on GPU
 from jinja2 import Template
@@ -24,6 +25,11 @@ if not api_key:
     raise ValueError("OpenAI API key not found! Ensure it is set in the api.env file.")
 
 print(f"API Key Loaded: {api_key[:10]}...")
+
+# Access Google Sheets credentials path from environment variables
+credentials_file = os.getenv("GOOGLE_SHEET_CREDENTIALS")
+if not credentials_file:
+    raise ValueError("Google Sheets credentials file path not found in environment variables!")
 
 # Initialize the OpenAI client
 client = OpenAI(api_key=api_key)
@@ -109,7 +115,7 @@ def identify_themes(narrative, themes_template):
     )
     return response.choices[0].message.content
 
-def generate_dalle3_image(prompt, output_path="output_image.png"):
+def generate_dalle3_image(prompt, output_path):
     """
     Generate a single image based on the overall narrative using DALL-E or similar.
     Args:
@@ -164,7 +170,32 @@ def text_to_speech_openai(text, output_file="audio/output.mp3", voice="fable", m
         print(f"Audio saved to {output_file}")
     except Exception as e:
         print(f"Error generating audio: {e}")
+        
+def push_to_github(commit_message):
+    """
+    Push the generated files to the GitHub repository.
+    Args:
+        commit_message (str): Commit message for the changes.
+    """
+    try:
+        # Initialize the repository (use the path to your local GitHub repo)
+        repo_path = "/path/to/your/540finalproject"  # Adjust this path
+        repo = git.Repo(repo_path)
 
+        # Stage all changes
+        repo.git.add(all=True)
+
+        # Commit the changes
+        repo.index.commit(commit_message)
+
+        # Push to GitHub
+        origin = repo.remote(name="origin")
+        origin.push()
+
+        print("Changes pushed to GitHub successfully!")
+    except Exception as e:
+        print(f"Error pushing to GitHub: {e}")
+        
 def generate_html_storyboard(narrative, signals_trends_themes, image_path, audio_path, output_file, name):
     """
     Generate an HTML storyboard combining narrative, signals, trends, themes, images, and audio.
@@ -290,8 +321,10 @@ def generate_html_storyboard(narrative, signals_trends_themes, image_path, audio
         print(f"Appended new content to {output_file}")
 
 if __name__ == "__main__":
-    # Step 1: Connect to Google Sheet
-    credentials_file = "/Users/kimberlycoston/Desktop/540_Final/final-project-443202-558f808b76c8.json"  # Replace with your credentials file path
+    # Step 1: # Load credentials file path from environment variables
+    credentials_file = "GOGGLE_SHEET_CREDENTIALS"  # Replace with your credentials file path
+
+    # Use the credentials file to connect to Google Sheets
     sheet_name = "Final_Responses"  # Replace with your Google Sheet name
     sheet = connect_to_google_sheet(credentials_file, sheet_name)
 
@@ -303,37 +336,39 @@ if __name__ == "__main__":
     print("Latest Form Responses:", form_responses)
 
     # Step 3: Load the prompt template
-    narrative_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task1_narrative.txt")  # Adjust file path if necessary
+    narrative_template = load_prompt("assets/text/task1_narrative.txt")  # Adjust file path if necessary
 
     # Step 4: Generate the narrative using Google Form responses
     narrative = generate_narrative(form_responses, narrative_template)
     print("Generated Narrative:", narrative)
 
     # Step: Load the signals template
-    signals_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task2_signals.txt")  # Adjust file path if necessary
+    signals_template = load_prompt("/assets/text/task2_signals.txt")  # Adjust file path if necessary
 
     # Step: Generate signals using the narrative and the signals template
     signals = identify_signals(narrative, signals_template)
     print("Generated Signals:", signals)
 
     # Step: Load the trends template
-    trends_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task3_trends.txt")  # Adjust file path if necessary
+    trends_template = load_prompt("assets/text/task3_trends.txt")  # Adjust file path if necessary
 
     # Step: Generate trends using the narrative and the trends template
     trends = identify_trends(narrative, trends_template)
     print("Generated Trends:", trends)
 
     # Step: Load the themes template
-    themes_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task4_themes.txt")  # Adjust file path if necessary
+    themes_template = load_prompt("assets/text/task4_themes.txt")  # Adjust file path if necessary
 
     # Step: Generate themes using the narrative and the themes template
     themes = identify_themes(narrative, themes_template)
     print("Generated Themes:", themes)
+    
+    # Generate timestamp for file names
+    timestamp = int(time.time())  # Use the current time for uniqueness
 
     # Step: Generate images for the narratives
     # Generate a unique file name for the new narrative image
-    timestamp = int(time.time())  # Use the current time for uniqueness
-    output_path = f"narrative_image_{timestamp}.png"
+    output_path = f"assets/images/narrative_image_{timestamp}.png"
     image_path = generate_dalle3_image(narrative, output_path=output_path)
 
     # Step 9: Print the generated image paths
@@ -341,7 +376,7 @@ if __name__ == "__main__":
     print(f"Narrative Image Path: {image_path}")
 
     # Step 10: Convert the narrative to audio
-    audio_path = "audio/narrative.mp3"
+    audio_path = f"assets/audio/narrative_{timestamp}.mp3"
     text_to_speech_openai(narrative, output_file=audio_path, voice="fable", model="tts-1", speed=0.95)
 
     #Step 11:
@@ -357,6 +392,12 @@ if __name__ == "__main__":
         signals_trends_themes=signals_trends_themes,  # Single dictionary for related data
         image_path=image_path,
         audio_path=audio_path,
-        output_file="storyboard.html",
+        output_file="index.html",
         name=name
     )
+
+    # Generate the HTML, images, and audio (already in your script)
+
+    # Push the changes to GitHub
+    commit_message = "Update generated storyboard and assets"
+    push_to_github("Update generated storyboard and assets")
