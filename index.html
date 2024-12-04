@@ -1,266 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories of Tomorrow</title>
+    <!-- Include Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Audiowide&family=Doto:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Righteous&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+Pixels&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background1.jpg') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Ensure the background covers the entire page */
+            color: #FFFFFF; /* Set font color to white globally */
+            line-height: 0.7;
+            position: relative;
+        }
 
-        <html>
-    <head>
-        <title>Jordan's Storyboard Entry</title>
-        <!-- Include Google Fonts for Audiowide -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Roboto Condensed', sans-serif; /* Default body font */
-                margin: 20px;
-                color: #FFFFFF; /* Sets the default text color to white */
-                background-color: #00009c; /* Set background color to dark blue */
-            }
-            .banner {
-                width: 100%; /* Full width of the page */
-                max-height: 300px; /* Optional: Limit banner height */
-                object-fit: cover; /* Maintain aspect ratio */
-            }
-            h1, h2, h3 {
-                font-family: 'Audiowide', sans-serif;
-                color: #FFFFFF; /* white */
-            }
-            .section {
-                margin-bottom: 20px;
-            }
-            .narrative-image {
-                display: block;
-                margin: 20px auto; /* Centers the image */
-                max-width: 100%; /* Ensures it doesn't overflow */
-                border: 2px solid #2E86C1; /* Optional border for emphasis */
-                border-radius: 8px; /* Optional rounded corners */
-            }
-        </style>
-    </head>
-    <body>
-        <img src="/Users/kimberlycoston/Desktop/banner.png" alt="Banner Image" class="banner">
-        <div class="entry">
-            <hr>
-            <h1>Jordan's Storyboard Entry</h1>
-            <img class="narrative_image" src="narrative_image_1733097882.png" alt="Generated Illustration for Narrative">
-            <p>In the heart of 2040, Jordan stepped into the "Innovation Imaginarium," her chosen Creativity Pod, brimming with anticipation. This imaginative amphitheater, equipped with a state-of-the-art VR lab, lent students the power to defy the bounds of reality and create riveting stories. Each week, Jordan and her podmates plunged into seamless virtual worlds, honing their skills at the crossroads of art and technology. They then took their VR creations to the "Synergy Sphere," the Collaboration Hub known for its AI mentors and design thinking tools. There, they partnered with professionals, tapping into their expertise and unveiling practical career skills—skills that traditional classrooms had failed to introduce. Through this collaborative effort, the virtual worlds pulsed to life, luring audiences into immersive experiences and leaving them pondering on layers of meaning.</p><p>The approach to grading was a refreshing shift from Jordan's college days. Gone were the days of cramming facts and formulas for exams that only gauged short-term memory. Instead, every project in the Innovation Imaginarium received a thorough evaluation from mentors, peers, and AI, followed by constructive feedback. Students' growth was measured not by their grades but by their burgeoning creative portfolios and their capacity to use feedback for improvement. This new evaluation model ignited an enduring passion for learning in students, breathed life into their education, and pushed them to create a profound, meaningful influence through their creations.</p><p>The Passion-Driven Future model of education left an indelible impact in its wake. An Impact Dashboard, hosted on OurSpace, chronicled the magnitude of students' contributions. Far from glorifying self-promotion, OurSpace celebrated the collective achievements of learners, highlighting sustainability, collaboration, and impact. As Jordan and her pod shared their VR storytelling project, they watched their Impact Dashboard light up with metrics - adaptability, leadership, and tangible community impact. This shift fostered a culture of collective success, reimagining the definition of success and inspiring students to be part of something larger than themselves. However, several challenges must be addressed - inclusivity, accessibility, ethics, and scalability prime among them. Ensuring everyone has equal access to these learning platforms, creating ethical norms for content creation, and scaling this novel education model globally will form the key to making this equitable, inspiring, and transformative education model a reality for future learners worldwide.</p>
-            <hr>
-            <h2>Signals, Trends, and Themes</h2>
-            <div class="section">
-                <h3>Signals</h3>
-                <p>1. VR in Education: VR applications in education have notably increased in recent years. For example, Google introduced Google Expeditions, a VR education tool that assists teachers in taking their students on virtual trips anywhere around the world, providing a unique and immersive learning experience. This is similar to the VR lab in the "Innovation Imaginarium," allowing students to explore creativity beyond reality.
+        /* Black Overlay Gradient */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            z-index: -1; /* Ensures it stays behind content */
+            pointer-events: none; /* Makes it non-interactive */
+        }
 
-2. AI in Education: The advent of AI in education signals a promising future in this envisioned education scenario. For instance, Carnegie Learning's MATHia uses AI to provide personalized math tutoring. The narrative's use of AI mentors in the Synergy Sphere suggests a similar AI application, but more advanced and in a broader subject range. 
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: flex-end; /* align the logo to the far right */
+            align-items: center; /* Align items vertically if necessary */
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent overlay */
+            color: white; /* White text */
+            margin-bottom: 0;
+        }
 
-3. Formative Assessment: Over the past few years, there’s been a growing shift towards formative assessment, which entails providing feedback for improvement rather than summarizing learning into a single grade. Tools such as Google Classroom and Turnitin have facilitated this transition by integrating features for giving detailed feedback. This resonates with the narrative's shift from traditional grading systems towards an evaluation model focused on feedback and creative portfolios.
+        .header h1 {
+            font-family: 'Lato', sans-serif; /* Change font */
+            font-weight: 400;
+            font-size: 1.8em; /* Adjust text size */
+            line-height: 1.4; /* Adjust line height for better spacing */
+            margin: 0; /* Remove default margin */
+            text-align: left; /* Align text to the left */
+        }
 
-4. Impact Measurement in Education: New measures of student success have emerged beyond traditional academic metrics. The "Most Likely to Succeed" movement, for instance, has begun to redefine success around things like creativity, critical thinking, and collaboration, much like the Impact Dashboard in the narrative. 
+        @font-face {
+            font-family: 'Humane Bold';
+            src: url('https://cdn.prod.website-files.com/63bf3e1c32ea7ba16d1bdf88/63bf3e1c32ea7b2c3d1bdf93_Humane-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
 
-5. Online Collaboration Tools: The rise in remote work and distance learning has spurred the development and use of collaborative online tools like Microsoft Teams, Zoom, and Slack. These tools allow for synchronous and asynchronous communication, project management, and collaborative problem-solving. This is in line with the narrative's depiction of the Synergy Sphere as a collaboration hub and the virtual platform OurSpace.</p>
+
+        .header img {
+            max-width: 250px; /* Adjust logo size */
+            height: auto;
+            margin-left: 20px; /* Add spacing between text and logo */
+        }
+
+        /* Intro Section */
+        .intro {
+            max-width: 950px;
+            margin: 10px auto;
+            padding: 15 px 20px;
+        }
+
+        .intro h2 {
+            text-align: center;
+            font-family: 'Humane Bold', sans-serif;
+            font-weight: 700; /* Regular weight */
+            font-style: normal;
+            font-size: 12em; /* Larger font size */
+            color: #FFFFFF; /* White text */
+            margin-bottom: 5px;
+            line-height: 0.8; /* Adjust line height for better readability */
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            line-height: 1.5;
+            text-align: center;
+            color: #FFFFFF; /* White text */
+        }
+
+        /* Key Concepts Section */
+        .key-concepts {
+            display: flex;
+            justify-content: space-around; /* Evenly distribute space between sections */
+            align-items: flex-start; /* Align items at the top */
+            margin: 20px auto; /* Add some space around the section */
+            padding: 10px;
+            max-width: 1000px; /* Limit the section's width */
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            color: #FFFFFF; /* White text for contrast */
+        }
+
+        /* Individual Concept */
+        .concept {
+            flex: 1; /* Make each section equal width */
+            text-align: center; /* Center the text */
+            margin: 0 10px; /* Add spacing between sections */
+        }
+
+        /* Headings for Concepts */
+        .concept h3 {
+            font-family: 'Humane Bold', sans-serif; /* Use Anton font for headings */
+            font-size: 3.8em; /* Larger font size for emphasis */
+            color: #FFFFFF; /* white for headings */
+            margin-bottom: 10px; /* Add space below headings */
+        }
+
+        /* Paragraphs for Concepts */
+        .concept p {
+            font-family: 'Roboto Condensed', sans-serif; /* Use Roboto for body text */
+            font-size: 1em; /* Standard text size */
+            line-height: 1.5; /* Improve readability */
+            color: #FFFFFF; /* White text */
+        }
+
+        /* Signals Heading */
+        .concept.signals h3 {
+            color: #5546ff; /* Purple for Signals */
+        }
+
+        /* Trends Heading */
+        .concept.trends h3 {
+            color: #ff7bca; /* Pink for Trends */
+        }
+
+        /* Themes Heading */
+        .concept.themes h3 {
+            color: #bfff0a; /* green yellow for Themes */
+        }
+
+        /* Storyboard Section Styling */
+        .storyboard-section {
+            max-width: 100%; /* Limit width for better readability */
+            margin: 40px auto; /* Center section with vertical spacing */
+            padding: 20px 100px; /* Add padding inside the section */
+            background: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+            border-radius: 12px; /* Smooth rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Add a subtle shadow */
+            color: #FFFFFF; /* White text for readability */
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Story Entries */
+        .entry {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .entry h1 {
+            color: #ff7bca; /* White text */
+            font-family: 'Humane Bold', sans-serif;
+            font-size: 4.8em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .entry img {
+            display: block;
+            margin: 20px auto;
+            max-width: 50%;
+            border-radius: 8px;
+        }
+
+        .entry p {
+            text-align: justify;
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: #FFFFFF; /* White text */
+        }
+
+        .entry h2 {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #bfff0a; /* green yellow text */
+        }
+
+        .entry .section h3 {
+            color: #5546ff; /* blue for section headings */
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .entry .section p {
+            margin-bottom: 10px;
+            text-align: justify;
+            font-size: 1em;
+            color: #FFFFFF; /* White text */
+        }
+
+        /* Audio Player */
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="/Users/kimberlycoston/Desktop/logotopright.png" alt="Program Logo">
+    </div>
+
+    <!-- Intro Section -->
+    <div class="intro">
+        <h2 class="anton-regular">THE FUTURE OF LEARNING</h2>
+        <p>
+        Discover bold, creative student-driven narratives for the future of higher education
+        </p>
+    </div>
+
+    <!-- Key Concepts Section -->
+<div class="key-concepts">
+    <div class="concept signals">
+        <h3>SIGNALS</h3>
+        <p>Indicators of emerging change, such as technologies, behaviors, or policies, that hint at potential futures.</p>
+    </div>
+    <div class="concept trends">
+        <h3>TRENDS</h3>
+        <p>Broader patterns or shifts over time that shape the trajectory of our educational landscape.</p>
+    </div>
+    <div class="concept themes">
+        <h3>THEMES</h3>
+        <p>Overarching ideas or concepts that tie together signals and trends, reflecting key values or goals.</p>
+    </div>
+</div>
+
+    <!-- All Storyboard Entries Section -->
+    <div class="storyboard-section">
+        <p>
+            This site showcases a collection of student-directed visions for the future of higher education in 2040. Using your responses to a series of thought-provoking questions, we’ve generated compelling storylines and imagery that illustrate potential pathways education might take in the decades to come.
+        </p>
+        <p>
+            Each story identifies key signals, trends, and themes that suggest how these imagined futures could become reality. Whether you’re exploring these futures for inspiration, curiosity, or insight, you’ll discover how today’s choices shape tomorrow’s learning environments.
+        </p>
+        <p>
+            Take a look around, immerse yourself in these narratives, and see how the signals of today point toward the possibilities of tomorrow!
+        </p>
+    </div>
+
+<!-- Storyboard Entries -->
+    <main class="storyboard-section">
+        <!-- Existing entries can go here -->
+    <div class="entry">
+        <h1>Alex's Storyboard Entry</h1>
+        <img src="narrative_image_1733332536.png" alt="Generated Illustration for Narrative">
+        <p>In the university of 2040, piled high with collaboration and pulsing with creativity, students mark their journey through vivid experiences rather than by following a linear path...</p>
+        <h2>Signals, Trends, and Themes</h2>
+        <div class="section">
+            <h3>Signals</h3>
+            <p>1. Rise of Collaborative Learning Technologies...</p>
+        </div>
+        <div class="section">
+            <h3>Trends</h3>
+            <p>The narrative reflects various broader societal and educational trends...</p>
+        </div>
+        <div class="section">
+            <h3>Themes</h3>
+            <p>The envisioned education scenario for 2040 encapsulates several overarching themes...</p>
+        </div>
+        <audio controls>
+            <source src="audio/narrative_1733332559.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="entry">
+        <h1>Another Storyboard Entry</h1>
+        <img src="narrative_image_1733333068.png" alt="Generated Illustration for Narrative">
+        <p>In the university of 2040, clusters of students huddle in versatile areas known as "Digital Alchemists' Horizons"...</p>
+        <h2>Signals, Trends, and Themes</h2>
+        <div class="section">
+            <h3>Signals</h3>
+            <p>1. Rise of Online Learning Platforms...</p>
+        </div>
+        <div class="section">
+            <h3>Trends</h3>
+            <p>Over the last five years, there are several observable trends...</p>
+        </div>
+        <div class="section">
+            <h3>Themes</h3>
+            <p>The envisioned 2040 education scenario encapsulates three overarching themes...</p>
+        </div>
+        <audio controls>
+            <source src="audio/narrative_1733333068.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+</body>
+</html>
+
+    <div class="entry">
+        <h1>Alex's Storyboard Entry</h1>
+        <img class="narrative_image" src="narrative_image_1733347718.png" alt="Generated Illustration for Narrative">
+        <p><p>In the horizon of 2040, the face and functionality of university education have taken a pivotal shift from conventional standards to a passion-driven collaboration model. Students like Alex no longer find themselves stuffed into the traditional class boxes, instead, discovering their potential within Creativity Pods like "The Mindful Mavericks". Here, situated in the heart of digital and dynamic Collaboration Hubs - renamed ‘Synergy Stations’ - they collaborate on passion-driven projects equipped with specialized tools and technologies. The Synergy Stations' AI Mentors cultivate critical thinking and personal growth, while immersive VR Laborites offer an experiential approach towards understanding complex concepts. Exclusive to Alex's pod, a particular device captures imagination - a high-tech tool that translates neural signals into unique jazz piano compositions, embodying creativity in its purest form.</p><p>The introduction of "Impact Dashboards" on new social platforms, particularly OurSpace, echoes this transformative narrative. Traditional grading systems are successfully replaced with interactive journaling on progress dashboards, offering a profound narrative to their academic experience. Rather than a sterile transcript of scores, Alex can now reflect on his developmental journey and the real-world application of his critical takeaways from 'Mindful Mavericks'. As he navigates through the exciting but rigorous course on 'Gaming & Cognitive Psychology,' his accomplishments are weighed not by an A+ grade but by the evidence of his contribution to mental health initiatives and innovative game designs improving cognitive skills.</p><p>Indeed, this revolutionary model promises to rekindle students' enthusiasm while redefining the metrics of success. However, it's critical to address the complexities that could potentially shadow this promising outlook before its implementation. Concerns over inclusivity loom large. Are there adequate measures to ensure that all students can equitably access these ‘Creativity Pods’ and ‘Synergy Stations’? Will every student be able to equally engage with the advanced tools, technologies, and innovative concepts presented? Ethical considerations, as well as questions on scalability, must be tackled head-on to prevent this futuristic model from becoming an elitist mirage. Yet, if realized, these education systems will stimulate collaboration, nurture creativity, and above all – challenge students to live their passion and contribute towards global solutions, tangibly within their communities.</p></p>
+        <div class="signals-trends-themes">
+            <div class="concept signals">
+                <h3>SIGNALS</h3>
+                <p>1. Growth of Online/Digital Learning Platforms: The surge in digital learning platforms such as Coursera, Udacity, and Khan Academy over the last few years signals movement toward the described education model. These platforms highlight the shift from conventional classroom-based learning to dynamic, collaborative, and interactive digital learning platforms. They enable students to learn at their own pace, catering to their interests or passion-driven projects, similar to the narrative's vision of learning in "Synergy Stations".
+
+2. Advances in AI and VR Technology in Education: In the last five years, the use of AI technology in education has significantly increased. AI such as chatbots have been utilized for personalized, automated tutoring and mentoring. On the other hand, VR has been progressively utilized to create immersive learning experiences. Applications like Google's Expeditions have been used to take students on virtual field trips. These advancements resonate with the narrative's depiction of AI Mentors and VR Laborites in Synergy Stations.
+
+3. Transformation of Traditional Grading System: Recent years have seen a growing move away from traditional grading systems. For instance, in 2019 Finland announced a major overhaul of its national curriculum, moving away from subject-based to phenomenon-based learning, focussing on interdisciplinary projects instead of individual subjects. Platforms such as Seesaw have been used for interactive journaling on progress, allowing students to reflect on and share their learning journey. This aligns with the narrative's vision of "Impact Dashboards", replacing grades with an account of the student's developmental journey and real-world impact.
+
+4. Use of Brain-Computer Interface Technology in Music: An example is Neurable, which has been developing BCI technology to translate brain waves into actions in the digital realm since 2017. Particularly, in music, there have been examples where neural signals have been transformed into unique compositions. This is a real-life analogue to narrative's future scenario where a device captures imagination, translating neural signals into unique jazz piano compositions.</p>
             </div>
-            <div class="section">
-                <h3>Trends</h3>
-                <p>In the last five years, the influence of technology and artificial intelligence on education has steadily increased, indicating a movement towards a more tech-integrated learning environment. This is seen in the narrative's emphasis on using VR technology and AI mentors in a creative and collaborative educational setting, suggesting a significant role of technology in shaping the future of education by 2040. Additionally, there has been growing dissatisfaction with traditional education methods such as rote learning and an increasing emphasis on creativity, practical skills, and applied knowledge. This transition towards a more holistic and retrospective method of evaluation, as mentioned in the narrative, could likely have been brought about by the ongoing shift in pedagogical approach from knowledge-centric to competency-based models seen in recent years.
+            <div class="concept trends">
+                <h3>TRENDS</h3>
+                <p>Over the past five years, there has been a parallel rise in movements both advocating for and introducing digital transformation and personalized learning experiences in the field of education. This tends to ground the central features of the 2040 scenario, such as AI mentors, virtual reality labs, and progression dashboards. With this has also come the growing demand for education that is passion and skill-based rather than entirely academic, signaling a shift away from traditional grading metrics to more comprehensive methods of assessment. These aspirations are evident in ongoing discussions on redefining student success and the push for reforms in education policies.
 
-Similarly, the narrative also reflects a recent push towards sustainability and social consciousness, hinting at a broader societal trend towards collective success and social impact. The focus given to sustainability, collaboration and tangible community impact can be linked to the global movement of advocacy for Sustainable Development Goals (SDGs) and the increasing awareness of societal issues among the younger generations.
+Moreover, there is a swiftly growing interest in ed-tech tools and platforms that enhance the learning experience, as could be seen in the rising investment in ed-tech startups. Advancements in AI, AR, VR, and Neural Technology have created vast possibilities for learners, as well as educators, and indicate a future education system centered around experiential, tech-based learning, akin to the ‘Synergy Stations’ and ‘Creativity Pods’ in this scenario.
 
-Finally, the narrative shows the emerging challenges in the educational landscape such as inclusivity, accessibility, ethics, and scalability. In recent years, there has been a growing recognition of disparities in access to quality education which is likely to inform future approaches towards ensuring a more equitable learning environment for all. Similarly, the focus on ethical norms in content creation reflects the ongoing dialogue around ethics in digital technology and AI in education.</p>
+However, these developments have not been without challenges. Access to digital resources and tools has not been equitable, leading to what is commonly termed the 'digital divide’. This disparity has amplified concerns over inclusivity and equity in such a prolific technologically advanced and personalized education model. It continues to be a pertinent area for policy and decision makers to address to prevent the future of education from becoming an elitist mirage. This underlying movement forms the backdrop for the concerns raised in the 2040 vision. 
+
+Finally, the increasing integration of learning with real-world application, innovation, and contribution towards solving global challenges, is echoed in the rising trends toward project-based learning and linkages of academic work to social impact. This shift represents a broader societal change, where education is viewed not just as an individual pursuit, but as a driver of community development and societal transformation. Hence, it lends credibility to Alex's evaluation based on his contribution to mental health initiatives and innovative game designs in the imagined scenario.</p>
             </div>
-            <div class="section">
-                <h3>Themes</h3>
-                <p>The envisioned 2040 education scenario reflects several overarching themes.
+            <div class="concept themes">
+                <h3>THEMES</h3>
+                <p>The envisioned 2040 education scenario encompasses several overarching themes. One of these is a transformation from traditional, rigid educational structures towards a more collaborative and passion-driven model. This is reflected in the replacement of traditional classrooms with 'Synergy Stations' and 'Creativity Pods' where students are able to work on passion projects using cutting-edge technology. The 'AI mentors' and immersive VR technologies used here represent another major theme: the pivotal role of advanced technology in enhancing and diversifying educational experiences. 
 
-1. Technology-Integrated Learning: This is evident in terms of various advanced tools and modules including VR labs, AI mentors, and VR creations which not only provide a creative and engaging way of learning but also merges the fields of art and technology. 
+The narrative also highlights a shift in assessment methods, from traditional grading to interactive progress dashboards. This focuses on the measurement of students’ application of knowledge in real-world contexts, emphasizing practical skills and contributions to society over abstract academic achievements. Simultaneously, it goes hand-in-hand with another prominent theme: the emphasis on personal growth and character development, alongside the acquisition of knowledge.
 
-2. Experimental and Practical Skills Building: The education model emphasizes developing practical skills alongside theoretical knowledge. Collaborations with professionals to apply classroom learning to real scenarios and practical issues underlines this theme.
-
-3. Dynamic Assessments: The traditional ways of testing and grading have been replaced by thorough project evaluations—by AI, peers, and mentors—and personalized constructive feedback, thereby measuring students' growth and learning in a more holistic manner.
-
-4. Passion-Driven Learning: The model stimulates students' engagement in learning by encouraging experimentation, creativity, and passion. 
-
-5. Collective Success and Contributions: The education framework focuses on collective achievements and the impact students make through their innovations, emphasizing community involvement, collaboration, and sustainability.
-
-6. Socially Responsible and Ethical Learning: With the underlying theme of consideration for key societal issues like inclusivity, accessibility, and ethics, the model portrays an education scenario that's not only academically oriented but also socially conscious.
-
-7. Global Scaling and Equality in Education: Lastly, the theme of broadening the model's reach to ensure students worldwide have equal educational opportunities features prominently in the narrative.
-
-Each theme culminates into a more engaging, innovative, and equitable approach to education that fosters a lifelong love for learning and inspires students to use their knowledge and skills to make meaningful contributions to society.</p>
+However, the narrative also underscores concerns around inclusivity and accessibility, suggesting it's crucial to ensure these innovative educational resources and methods are available to all students, not just an elite few. So, these themes of equity and inclusivity are key. It underlines the importance of preemptively addressing any potential barriers and ethical considerations to ensure a fair and just education system that effectively nurtures creativity, collaboration, and holistic development in students.</p>
             </div>
-            <hr>
-            <h2>Listen to the Narrative</h2>
-            <audio controls>
-                <source src="audio/narrative.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div><hr>
-        <html>
-    <head>
-        <title>Taylor's Storyboard Entry</title>
-        <!-- Include Google Fonts for Audiowide -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Roboto Condensed', sans-serif; /* Default body font */
-                margin: 20px;
-                color: #FFFFFF; /* Sets the default text color to white */
-                background-color: #00009c; /* Set background color to dark blue */
-            }
-            .banner {
-                width: 100%; /* Full width of the page */
-                max-height: 300px; /* Optional: Limit banner height */
-                object-fit: cover; /* Maintain aspect ratio */
-            }
-            h1, h2, h3 {
-                font-family: 'Audiowide', sans-serif;
-                color: #FFFFFF; /* white */
-            }
-            .section {
-                margin-bottom: 20px;
-            }
-            .narrative-image {
-                display: block;
-                margin: 20px auto; /* Centers the image */
-                max-width: 100%; /* Ensures it doesn't overflow */
-                border: 2px solid #2E86C1; /* Optional border for emphasis */
-                border-radius: 8px; /* Optional rounded corners */
-            }
-        </style>
-    </head>
-    <body>
-        <img src="/Users/kimberlycoston/Desktop/banner.png" alt="Banner Image" class="banner">
-        <div class="entry">
-            <hr>
-            <h1>Taylor's Storyboard Entry</h1>
-            <img class="narrative_image" src="narrative_image_1733099266.png" alt="Generated Illustration for Narrative">
-            <p>In 2040, Taylor wakes up eager for the day ahead at their university. Instead of joining a traditional classroom, Taylor heads to the "Innovative Architects" Creativity Pod, an assembly of like-minded students dedicated to designing sustainable, waste-reducing products that improve everyday life. The pod meets frequently in the "Convergence Nexus," a Collaboration Hub packed with cutting-edge tools such as AI mentors, a VR lab, 3D printers, and design thinking tools. Under the gentle guidance of an AI mentor and surrounded by motivated peers, Taylor collaborates on real-world projects that go way beyond textbooks. The group incorporates practical skills like basic carpentry and electromechanics into their projects, culminating their work in hands-on presentations which carry far more weight than a traditional exam.</p><p>Grades are now outdated for Taylor's university experience. Instead of stressfully competing for letters on a report card, they celebrate each other's achievements through peer reviews and presentations. Taylor's contributions are evaluated not by test scores but by the impact they have made on others, both within and outside the pod. Information about Taylor's educational progress, practical skills acquired, problem-solving milestones, and projects they've initiated are all displayed on their OurSpace Impact Dashboard. It even showcases their non-academic explorations into photography and editing, mapping a well-rounded, holistic understanding of Taylor's growth and expertise.</p><p>This Passion-Driven Future education system isn't without challenges. Questions concerning access to tools and technologies, scalability across different learning environments, and the ethics of AI-mentoring must be addressed. Yet, the potential impacts are exhilarating. Students' interest in learning is reignited as they work on projects they are truly passionate about. The emphasis on collaboration over individual competition fosters a community-driven mindset in the global youth, crucial for solving greater societal problems like climate change. By altering success metrics from self-promotion to collective achievements, social comparison reduces, boosting overall mental wellbeing. Taylor, now an empowered learner, understands that their small efforts can make big differences, fueling their motivation to contribute meaningfully to their community.</p>
-            <hr>
-            <h2>Signals, Trends, and Themes</h2>
-            <div class="section">
-                <h3>Signals</h3>
-                <p>1. The rise of AI in Mentorship: There has been an increase in the use of AI in education over the course of the past five years. For instance, apps like Squirrel AI provide personalized tutoring by identifying and targeting gaps in students' understanding. This suggests that the vision of the AI mentor guiding Taylor and the pod in their project in the 2040 education scenario may soon be a reality.
-
-2. Virtual and Augmented Reality in Learning: Recent years have seen a dramatic increase in the use of virtual reality (VR) and augmented reality (AR) in education. In 2019, Google launched the "Expeditions" app, which allows teachers to take their students on VR field trips. This indicates that the 2040 education scenario of the "Convergence Nexus" equipped with a VR lab may not be far-fetched.
-
-3. Collaborative Learning Environments: Collaborative learning tools such as Google Classroom and Canvas have revolutionized the way students collaborate on projects. These platforms allow group members to track progress, share ideas, and create together in real-time. This aligns with the 2040 scenario of Taylor collaborating with peers on real-world projects.
-
-4. Shift from Traditional Grading: Several innovative schools and universities have started to move away from traditional grading systems. For example, the competency-based education model, implemented by the likes of Western Governors University, evaluates students based on their skills and proficiency rather than test scores. This shift in education approach is in line with the envisioned 2040 future whereby Taylor's contributions are evaluated by the impact they have made rather than traditional grades.</p>
-            </div>
-            <div class="section">
-                <h3>Trends</h3>
-                <p>In the past five years, there has been an increased push towards hands-on, project-based learning in education. This signifies a shift away from the traditional, theoretical, and exam-focused educational system. This is mirrored in the 2040 scenario where the focus is not on grades or test results, but on practical skills, problem-solving capabilities, and the tangible impact the students have on their surroundings and society. The incorporation of technology - such as AI mentors, VR labs, and 3D printers - is another recent trend that has potential to revolutionize the concept of classrooms and learning environments. The narrative also reveals a focus on celebrating individuality and fostering creativity, a growing trend in modern education. 
-
-There has also been an increasing emphasis on mental health in education, recognizing the detrimental effects of high stress and competition on students' well-being. This is reflected in the 2040 depiction of an education system where success is measured by collective achievements and progress is displayed on an impact dashboard, bolstering mental wellbeing by reducing social comparison. 
-
-Moreover, sustainability and climate action have become interconnected with educational practices, showing a broader societal shift towards environmental responsibility. This echoes in the scenario where students are actively involved in designing sustainable, waste-reducing products. 
-
-Lastly, we see the challenge of educational equity, a prevalent issue in present society that's likely to persist. The narrative mentions access issues to tools and technologies – mirroring existing digital divide and inequitable resource allocation. This indicates that futuristic education models must consider and address these enduring societal disparities.
-</p>
-            </div>
-            <div class="section">
-                <h3>Themes</h3>
-                <p>The future 2040 education scenario is marked by several overarching themes:
-1. Interactive and Collaborative Learning: The narrative presents a future where learning has transcended conventional classrooms and transformed into interactive and collaborative spaces termed 'Creativity Pods'. This envisions an environment where students participate in practical, real-world tasks and learn from each other's experiences and perspectives.
-2. Use of Cutting-Edge Technology: The story emphasizes the integration of advanced tools like AI mentors, VR labs, and 3D printers into the education system, which provide an immersive and hands-on learning experience.
-3. Practical Skills and Project-Based Learning: Instead of rote learning and examination, the emphasis is on gaining practical skills and applying them in real-world projects. This brings relevance and context to the learning process, thereby engaging students more effectively.
-4. Holistic Approach to Evaluation: The narrative highlights a shift from traditional grading systems to comprehensive and personalized impact dashboards displaying students' growth, skills, and contributions to the community.
-5. Emphasis on Personal Interest and Passion: The narrative portrays a future where the education system prioritizes cultivating students' individual interests, passions and encourages learning driven by curiosity and fascination.
-6. Community-centric and Impact-focused Learning: The story underscores the importance of collective achievements and contributions to society, instilling a community-driven mindset in students. It encapsulates a vision of a pedagogical shift from competitive to compassionate and cooperative learning, which is crucial for addressing broader social issues. 
-7. Mental Well-being: This future education model also values mental health by reducing competitive pressure and fostering a supportive learning community. This is suggestive of an emerging theme of integrating well-being into educational practices.
-8. Ethical Considerations and Equitable Access: While depicting a technologically rich educational environment, the narrative also acknowledges the challenges of ensuring access to such resources and dealing with ethical implications of AI. This hints at the theme of the digital divide and ethical responsibility in education technology.</p>
-            </div>
-            <hr>
-            <h2>Listen to the Narrative</h2>
-            <audio controls>
-                <source src="audio/narrative.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div><hr>
-        <html>
-    <head>
-        <title>Alex's Storyboard Entry</title>
-        <!-- Include Google Fonts for Audiowide -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Roboto Condensed', sans-serif; /* Default body font */
-                margin: 20px;
-                color: #FFFFFF; /* Sets the default text color to white */
-                background-color: #00009c; /* Set background color to dark blue */
-            }
-            .banner {
-                width: 100%; /* Full width of the page */
-                max-height: 300px; /* Optional: Limit banner height */
-                object-fit: cover; /* Maintain aspect ratio */
-            }
-            h1, h2, h3 {
-                font-family: 'Audiowide', sans-serif;
-                color: #FFFFFF; /* white */
-            }
-            .section {
-                margin-bottom: 20px;
-            }
-            .narrative-image {
-                display: block;
-                margin: 20px auto; /* Centers the image */
-                max-width: 100%; /* Ensures it doesn't overflow */
-                border: 2px solid #2E86C1; /* Optional border for emphasis */
-                border-radius: 8px; /* Optional rounded corners */
-            }
-        </style>
-    </head>
-    <body>
-        <img src="/Users/kimberlycoston/Desktop/banner.png" alt="Banner Image" class="banner">
-        <div class="entry">
-            <hr>
-            <h1>Alex's Storyboard Entry</h1>
-            <img class="narrative_image" src="narrative_image_1733100621.png" alt="Generated Illustration for Narrative">
-            <p>In the bustling heart of the Futura University campus, Alex stood amidst the lively energy of the Inspiration Incubator, a space designed for encouraging endless possibilities. This Collaboration Hub was no ordinary space; it was equipped with advanced tools like AI mentors, VR labs, and 3D printing mechanisms, transforming the once passive learning experience into an all-encompassing, immersive endeavor. He was a part of The GamePsych Alliance, a Creativity Pod dedicated to exploring the intersection of gaming and psychology. Assisted by machine learning tools and virtual reality systems, Alex was engrossed in designing a video game intended to improve cognitive skills and mental health. In his free time, he dove into the Jazz Innovators Pod, his hands gliding over the digital keys of the university's VR piano, creating pitches that danced around the acoustically engineered pod space.</p><p>In this progressive place of learning, traditional grading was a relic of the past, replaced by an innovative approach rooted in personal attainment and real-world application. Alex was no longer bound by the numerical evaluations of a conventional system that suffocated creativity and passion. Instead, his achievements were showcased on his OurSpace Impact Dashboard—a dynamic reflection of his contributions, team projects, and personal growth. Documenting his real-life applications of theoretical knowledge in his personal journal and evaluating them against established innovation criteria provided a much more comprehensive assessment of Alex's academic growth, displaying the prowess in challenges he’d innovated solutions for and the hours he’d poured into volunteering for the betterment of society.</p><p>Adopting this passion-driven educational model held the power to redefine the educational landscape, fostering creativity, collaboration, and meaningful societal impact. By engaging students like Alex in real-world projects, measuring their growth through practical applications, and showcasing their contributions through OurSpace, the university was setting the groundwork for an educational paradigm shift. However, this model came with its own set of challenges. Future considerations for implementation included ensuring that this model was inclusive, accessible, ethical, and scalable. Moreover, the question of how to maintain human-centric judgement amidst increasingly technologically driven assessments remained pertinent. Nonetheless, the Passion-Driven Future Education Model of 2040 had begun to challenge the Status Quo, re-defining success metrics, and inspiring students to pursue education with renewed vigor and purpose, propelling them towards a more collaborative and creative world.</p>
-            <hr>
-            <h2>Signals, Trends, and Themes</h2>
-            <div class="section">
-                <h3>Signals</h3>
-                <p>1. Implementation of AI in Education: AI-based tools are being incorporated more frequently in education in recent years. For instance, AI tutors and mentors like Carnegie Learning's "Mika" have gained popularity for their ability to provide personalized learning experiences. In the narrative, AI mentors are an integral part of the educational process at Futura University, assisting students with their exploration and achievements.
-
-2. Use of VR and 3D Printing: The use of VR in education has gained increasing traction in the past few years. For instance, medical students at Case Western Reserve University have been using Microsoft's HoloLens to study anatomy since 2019. Similarly, 3D printing has also made its way into classrooms, enabling students to create prototypes and understand complex concepts better. In the narrative, VR labs and 3D printing mechanisms are some of the advanced tools used to enhance the learning experience.
-
-3. Challenge-Based Learning Programs: Real-world, problem-solving challenges are being integrated into education systems as a way to teach teamwork and critical thinking skills. Programs like the XPRIZE Connect Challenge have emphasized on the development of video games to solve societal problems. The GamePsych Alliance in the narrative also focuses on designing a video game to improve cognitive skills and mental health.
-
-4. Shift Towards Alternative Assessment Methods: Over the past few years, there's been a push towards alternative grading methods that emphasize on a student's overall growth rather than just their test scores. For instance, the Mastery Transcript Consortium is a global network of schools that has replaced traditional grading with a credit-based system that focuses on skills and experiences. Similarly, the narrative mentions the OurSpace Impact Dashboard, a platform that highlights a student's contributions, projects, and personal growth.</p>
-            </div>
-            <div class="section">
-                <h3>Trends</h3>
-                <p>Over the last five years, there has been a significant growth in the adoption of technology in the educational sphere that reflects the shift towards the 2040 scenario envisioned in the narrative. The integration of Artificial Intelligence (AI) and Virtual Reality (VR) into classrooms has been trending upwards, providing interactive and immersive learning experiences. This trend corresponds with the technological sophistication of the 'Collaboration Hub' space at Futura University where Alex uses AI mentors and VR labs.
-
-Moreover, the rise of gaming and psychology's intersection, as represented by 'The GamePsych Alliance', is part of a broader movement towards educational models that intertwine technology and unconventional subjects, bringing new perspectives to learning. This is mirrored in the increasing popularity of educational video games designed to enhance cognitive skills.
-
-The shift away from traditional grading systems towards an approach focused on personal attainment and real-world application shows parallels to mastery-based learning and competency-based learning trends. These methods have gained traction as they emphasize learning's depth and application over rote memorization, reflected in the replacement of typical grading at Futura University.
-
-The concept of an 'OurSpace Impact Dashboard' to assess students' contributions, team projects, and personal growth may be emerging from the increasing emphasis on experiential learning and life-long learning, recognizing that learning occurs beyond the boundaries of traditional classrooms. This aligns with the growing emphasis on the larger societal and personal impact of education, involving volunteering and community engagement, indicative of a shift towards a more holistic, integrated understanding of education's role.
-
-Finally, the challenges outlined in the narrative--accessibility, inclusivity, ethics, scalability, and maintaining human-centric judgments--align with ongoing debates in contemporary education about technology's role, equity in education, and the balance between technology and human inputs. These trends suggest a shift from a one-size-fits-all approach to a more personalized, student-centric method of learning and assessment driven by passion and societal impact.</p>
-            </div>
-            <div class="section">
-                <h3>Themes</h3>
-                <p>The narrative is centered on several key themes encapsulating the envisioned 2040 education scenario:
-
-1. Technological Innovation in Education: The shift from traditional educational platforms to advanced technological tools like AI mentors, VR labs, and 3D printing mechanisms highlights the importance of integrating technology into the learning process. This Immersive Educational Technology augments the learning experience, transforming it from passive to active, and facilitating exploration and creativity. 
-
-2. Personal Attainment and Practical Application: The shift from traditional grading to tracking personal achievements and real-world applications constitutes the second theme, Competency-Based Evaluation. It places emphasis on learning by doing, allowing students to apply theoretical knowledge to practical scenarios, and considering the impact and creativity of their work rather than just the correctness of the theory. Evaluations are based on personal growth and contributions to team projects.
-
-3. Passion-Driven Learning: This theme underscores the importance of pursuing education that aligns with a student's interests and passions, rather than adhering to rigid academic disciplines. It fosters creativity, engagement, and meaningful societal contributions. 
-
-4. Redefining Success Metrics: This involves changing how educational achievement is measured, moving from numerical grades to impact dashboards that reflect a student's contributions and growth. 
-
-5. Challenges and Future Considerations: The narrative also highlights possible challenges in implementing this model, underlining the necessity to ensure inclusivity, accessibility, ethics, and scalability of this future educational model. Despite the dominance of technology, maintaining a human-centric approach in assessments remains crucial. 
-
-In sum, the narrative depicts a model of future education that is technologically innovative, centered around personal attainment and practical application, passion-driven, and success redefined that faces challenges in terms of equity, ethics, and scalability.</p>
-            </div>
-            <hr>
-            <h2>Listen to the Narrative</h2>
-            <audio controls>
-                <source src="audio/narrative.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div><hr></body>
+        </div>
+        <audio controls>
+            <source src="audio/narrative_1733347735.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    </main>
+</body>
 </html>
