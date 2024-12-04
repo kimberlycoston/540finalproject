@@ -2,7 +2,6 @@ import os  # Always import os before using it
 from dotenv import load_dotenv  # dotenv is loaded to manage environment variables
 from openai import OpenAI  # Import OpenAI after supporting modules
 import requests
-import git
 from diffusers import StableDiffusionPipeline  # For image generation
 import torch  # For running Stable Diffusion on GPU
 from jinja2 import Template
@@ -25,11 +24,6 @@ if not api_key:
     raise ValueError("OpenAI API key not found! Ensure it is set in the api.env file.")
 
 print(f"API Key Loaded: {api_key[:10]}...")
-
-# Access Google Sheets credentials path from environment variables
-credentials_file = os.getenv("GOOGLE_SHEET_CREDENTIALS")
-if not credentials_file:
-    raise ValueError("Google Sheets credentials file path not found in environment variables!")
 
 # Initialize the OpenAI client
 client = OpenAI(api_key=api_key)
@@ -115,7 +109,7 @@ def identify_themes(narrative, themes_template):
     )
     return response.choices[0].message.content
 
-def generate_dalle3_image(prompt, output_path):
+def generate_dalle3_image(prompt, output_path="output_image.png"):
     """
     Generate a single image based on the overall narrative using DALL-E or similar.
     Args:
@@ -146,7 +140,7 @@ def generate_dalle3_image(prompt, output_path):
         print(f"Error generating image: {e}")
         return None
 
-def text_to_speech_openai(text, output_file="audio/output.mp3", voice="fable", model="tts-1", speed=1.0):
+def text_to_speech_openai(text, audio_path="audio/output.mp3", voice="fable", model="tts-1", speed=1.0):
     """
     Convert text to speech using OpenAI's TTS API.
     Args:
@@ -166,36 +160,11 @@ def text_to_speech_openai(text, output_file="audio/output.mp3", voice="fable", m
             speed=speed
         )
         # Stream audio directly to a file
-        response.stream_to_file(output_file)
-        print(f"Audio saved to {output_file}")
+        response.stream_to_file(audio_path)
+        print(f"Audio saved to {audio_path}")
     except Exception as e:
         print(f"Error generating audio: {e}")
-        
-def push_to_github(commit_message):
-    """
-    Push the generated files to the GitHub repository.
-    Args:
-        commit_message (str): Commit message for the changes.
-    """
-    try:
-        # Initialize the repository (use the path to your local GitHub repo)
-        repo_path = "/path/to/your/540finalproject"  # Adjust this path
-        repo = git.Repo(repo_path)
 
-        # Stage all changes
-        repo.git.add(all=True)
-
-        # Commit the changes
-        repo.index.commit(commit_message)
-
-        # Push to GitHub
-        origin = repo.remote(name="origin")
-        origin.push()
-
-        print("Changes pushed to GitHub successfully!")
-    except Exception as e:
-        print(f"Error pushing to GitHub: {e}")
-        
 def generate_html_storyboard(narrative, signals_trends_themes, image_path, audio_path, output_file, name):
     """
     Generate an HTML storyboard combining narrative, signals, trends, themes, images, and audio.
@@ -219,112 +188,72 @@ def generate_html_storyboard(narrative, signals_trends_themes, image_path, audio
     themes = signals_trends_themes.get("themes", "No themes provided.")
 
     # Generate new content for the HTML file
+
+    # Generate new dynamic content for the HTML file
     new_content = f"""
-        <html>
-    <head>
-        <title>{name}'s Storyboard Entry</title>
-        <!-- Include Google Fonts for Audiowide -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-        <style>
-            body {{
-                font-family: 'Roboto Condensed', sans-serif; /* Default body font */
-                margin: 20px;
-                color: #FFFFFF; /* Sets the default text color to white */
-                background-color: #00009c; /* Set background color to dark blue */
-            }}
-            .banner {{
-                width: 100%; /* Full width of the page */
-                max-height: 300px; /* Optional: Limit banner height */
-                object-fit: cover; /* Maintain aspect ratio */
-            }}
-            h1, h2, h3 {{
-                font-family: 'Audiowide', sans-serif;
-                color: #FFFFFF; /* white */
-            }}
-            .section {{
-                margin-bottom: 20px;
-            }}
-            .narrative-image {{
-                display: block;
-                margin: 20px auto; /* Centers the image */
-                max-width: 100%; /* Ensures it doesn't overflow */
-                border: 2px solid #2E86C1; /* Optional border for emphasis */
-                border-radius: 8px; /* Optional rounded corners */
-            }}
-        </style>
-    </head>
-    <body>
-        <img src="/Users/kimberlycoston/Desktop/banner.png" alt="Banner Image" class="banner">
-        <div class="entry">
-            <hr>
-            <h1>{name}'s Storyboard Entry</h1>
-            <img class="narrative_image" src="{image_path}" alt="Generated Illustration for Narrative">
-            {formatted_narrative}
-            <hr>
-            <h2>Signals, Trends, and Themes</h2>
-            <div class="section">
-                <h3>Signals</h3>
+    <div class="entry">
+        <h1>{name}'s Storyboard Entry</h1>
+        <img class="narrative_image" src="{image_path}" alt="Generated Illustration for Narrative">
+        <p>{formatted_narrative}</p>
+        <div class="signals-trends-themes">
+            <div class="concept signals">
+                <h3>SIGNALS</h3>
                 <p>{signals_trends_themes['signals']}</p>
             </div>
-            <div class="section">
-                <h3>Trends</h3>
+            <div class="concept trends">
+                <h3>TRENDS</h3>
                 <p>{signals_trends_themes['trends']}</p>
             </div>
-            <div class="section">
-                <h3>Themes</h3>
+            <div class="concept themes">
+                <h3>THEMES</h3>
                 <p>{signals_trends_themes['themes']}</p>
             </div>
-            <hr>
-            <h2>Listen to the Narrative</h2>
-            <audio controls>
-                <source src="{audio_path}" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div><hr>"""
+        </div>
+        <audio controls>
+            <source src="{audio_path}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    """
 
-    # Check if the output file exists
+    # Append the new content to the file
     if not os.path.exists(output_file):
-        with open(output_file, "w") as file:
+        # Create the file if it doesn't exist
+        with open(output_file, "w", encoding="utf-8") as file:
             file.write(f"""
-            <html>
-            <head>
-                <title>All Storyboard Entries</title>
-                <style>
-                    body {{ font-family: Arial, sans-serif; margin: 20px; }}
-                    .entry {{ margin-bottom: 40px; }}
-                    .section {{ margin-bottom: 20px; }}
-                    h3 {{ color: #333; }}
-                    audio {{ width: 100%; margin-top: 20px; }}
-                </style>
-            </head>
-            <body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>All Storyboard Entries</title>
+        <link rel="stylesheet" href="styles.css"> <!-- Link to your external stylesheet -->
+    </head>
+    <body>
+        <header>
+            <!-- Include your static header and intro sections here -->
+        </header>
+        <main>
             {new_content}
-            </body>
-            </html>
+        </main>
+    </body>
+    </html>
             """)
-        print(f"New HTML file created: {output_file}")
     else:
-        print(f"{output_file} exists. Appending content...")
+        # Append content to the existing file
         with open(output_file, "r+", encoding="utf-8") as file:
             content = file.read()
-            if "</body>" not in content:
-                print("Warning: </body> tag not found. Adding it to the file.")
-                content += "</body>\n</html>"
-            updated_content = content.replace("</body>", f"{new_content}</body>")
-            print("Updated Content to Write:")  # Debug
-            print(updated_content)
+            if "</main>" not in content:
+                print("Warning: </main> tag not found. Adding it to the file.")
+                content += "</main>\n</body>\n</html>"
+            updated_content = content.replace("</main>", f"{new_content}</main>")
             file.seek(0)
             file.write(updated_content)
             file.truncate()
-        print(f"Appended new content to {output_file}")
 
 if __name__ == "__main__":
-    # Step 1: # Load credentials file path from environment variables
-    credentials_file = "GOGGLE_SHEET_CREDENTIALS"  # Replace with your credentials file path
-
-    # Use the credentials file to connect to Google Sheets
+    # Step 1: Connect to Google Sheet
+    credentials_file = "/Users/kimberlycoston/Desktop/540_Final/final-project-443202-558f808b76c8.json"  # Replace with your credentials file path
     sheet_name = "Final_Responses"  # Replace with your Google Sheet name
     sheet = connect_to_google_sheet(credentials_file, sheet_name)
 
@@ -336,39 +265,37 @@ if __name__ == "__main__":
     print("Latest Form Responses:", form_responses)
 
     # Step 3: Load the prompt template
-    narrative_template = load_prompt("assets/text/task1_narrative.txt")  # Adjust file path if necessary
+    narrative_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task1_narrative.txt")  # Adjust file path if necessary
 
     # Step 4: Generate the narrative using Google Form responses
     narrative = generate_narrative(form_responses, narrative_template)
     print("Generated Narrative:", narrative)
 
     # Step: Load the signals template
-    signals_template = load_prompt("/assets/text/task2_signals.txt")  # Adjust file path if necessary
+    signals_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task2_signals.txt")  # Adjust file path if necessary
 
     # Step: Generate signals using the narrative and the signals template
     signals = identify_signals(narrative, signals_template)
     print("Generated Signals:", signals)
 
     # Step: Load the trends template
-    trends_template = load_prompt("assets/text/task3_trends.txt")  # Adjust file path if necessary
+    trends_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task3_trends.txt")  # Adjust file path if necessary
 
     # Step: Generate trends using the narrative and the trends template
     trends = identify_trends(narrative, trends_template)
     print("Generated Trends:", trends)
 
     # Step: Load the themes template
-    themes_template = load_prompt("assets/text/task4_themes.txt")  # Adjust file path if necessary
+    themes_template = load_prompt("/Users/kimberlycoston/Desktop/540_Final/task4_themes.txt")  # Adjust file path if necessary
 
     # Step: Generate themes using the narrative and the themes template
     themes = identify_themes(narrative, themes_template)
     print("Generated Themes:", themes)
-    
-    # Generate timestamp for file names
-    timestamp = int(time.time())  # Use the current time for uniqueness
 
     # Step: Generate images for the narratives
     # Generate a unique file name for the new narrative image
-    output_path = f"assets/images/narrative_image_{timestamp}.png"
+    timestamp = int(time.time())  # Use the current time for uniqueness
+    output_path = f"narrative_image_{timestamp}.png"
     image_path = generate_dalle3_image(narrative, output_path=output_path)
 
     # Step 9: Print the generated image paths
@@ -376,8 +303,15 @@ if __name__ == "__main__":
     print(f"Narrative Image Path: {image_path}")
 
     # Step 10: Convert the narrative to audio
-    audio_path = f"assets/audio/narrative_{timestamp}.mp3"
-    text_to_speech_openai(narrative, output_file=audio_path, voice="fable", model="tts-1", speed=0.95)
+    timestamp = int(time.time())  # Use the current time for uniqueness
+    # Ensure the audio directory exists
+    audio_dir = "audio"
+    if not os.path.exists(audio_dir):
+        os.makedirs(audio_dir)
+
+    audio_path = os.path.join(audio_dir, f"narrative_{timestamp}.mp3")  # Use timestamp for unique naming
+    
+    text_to_speech_openai(text=narrative, audio_path=audio_path, voice="fable", model="tts-1", speed=1.0)
 
     #Step 11:
     # Combine signals, trends, and themes into a dictionary
@@ -392,12 +326,6 @@ if __name__ == "__main__":
         signals_trends_themes=signals_trends_themes,  # Single dictionary for related data
         image_path=image_path,
         audio_path=audio_path,
-        output_file="index.html",
+        output_file="testing789.html",
         name=name
     )
-
-    # Generate the HTML, images, and audio (already in your script)
-
-    # Push the changes to GitHub
-    commit_message = "Update generated storyboard and assets"
-    push_to_github("Update generated storyboard and assets")
