@@ -1,5 +1,6 @@
-<<<<<<< HEAD
+# Ignore macOS system files
 .DS_Store
-=======
+assets/.DS_Store
+
+# Ignore API keys
 api.env
->>>>>>> 907c761 (Remove api.env and ignore it)
