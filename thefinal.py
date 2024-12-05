@@ -109,7 +109,7 @@ def identify_themes(narrative, themes_template):
     )
     return response.choices[0].message.content
 
-def generate_dalle3_image(prompt, output_path="output_image.png"):
+def generate_dalle3_image(prompt, output_path="assets/images/output_image.png"):
     """
     Generate a single image based on the overall narrative using DALL-E or similar.
     Args:
@@ -140,7 +140,7 @@ def generate_dalle3_image(prompt, output_path="output_image.png"):
         print(f"Error generating image: {e}")
         return None
 
-def text_to_speech_openai(text, audio_path="audio/output.mp3", voice="fable", model="tts-1", speed=1.0):
+def text_to_speech_openai(text, audio_path="assets/audio/output.mp3", voice="fable", model="tts-1", speed=1.0):
     """
     Convert text to speech using OpenAI's TTS API.
     Args:
@@ -221,32 +221,42 @@ def generate_html_storyboard(narrative, signals_trends_themes, image_path, audio
         # Create the file if it doesn't exist
         with open(output_file, "w", encoding="utf-8") as file:
             file.write(f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>All Storyboard Entries</title>
-        <link rel="stylesheet" href="styles.css"> <!-- Link to your external stylesheet -->
-    </head>
-    <body>
-        <header>
-            <!-- Include your static header and intro sections here -->
-        </header>
-        <main>
-            {new_content}
-        </main>
-    </body>
-    </html>
-            """)
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>All Storyboard Entries</title>
+                <link rel="stylesheet" href="styles.css"> <!-- Link to your external stylesheet -->
+            </head>
+            <body>
+                <header>
+                    <!-- Include your static header and intro sections here -->
+                </header>
+                <main>
+                    {new_content}
+                </main>
+            </body>
+            </html>
+                    """)
+        print(f"New HTML file created: {output_file}")
     else:
         # Append content to the existing file
+        print(f"{output_file} exists. Appending content...")
         with open(output_file, "r+", encoding="utf-8") as file:
             content = file.read()
+            print("Existing content read from the file:")
+            print(content)  # Debugging the existing content in the file
             if "</main>" not in content:
                 print("Warning: </main> tag not found. Adding it to the file.")
                 content += "</main>\n</body>\n</html>"
+            if "</body>" not in content:
+                print("Warning: </body> tag not found. Adding it manually.")
+                content += "\n</body>\n</html>"
             updated_content = content.replace("</main>", f"{new_content}</main>")
+            print("Updated content to write to the file:")
+            print(updated_content)  # Debugging the final content before writing
+
             file.seek(0)
             file.write(updated_content)
             file.truncate()
@@ -292,10 +302,14 @@ if __name__ == "__main__":
     themes = identify_themes(narrative, themes_template)
     print("Generated Themes:", themes)
 
+
+    image_dir = "assets/images"
+    os.makedirs(image_dir, exist_ok=True)  # Ensure the directory exists
+    
     # Step: Generate images for the narratives
     # Generate a unique file name for the new narrative image
     timestamp = int(time.time())  # Use the current time for uniqueness
-    output_path = f"narrative_image_{timestamp}.png"
+    output_path = os.path.join(image_dir, f"narrative_image_{timestamp}.png")
     image_path = generate_dalle3_image(narrative, output_path=output_path)
 
     # Step 9: Print the generated image paths
@@ -305,9 +319,8 @@ if __name__ == "__main__":
     # Step 10: Convert the narrative to audio
     timestamp = int(time.time())  # Use the current time for uniqueness
     # Ensure the audio directory exists
-    audio_dir = "audio"
-    if not os.path.exists(audio_dir):
-        os.makedirs(audio_dir)
+    audio_dir = "assets/audio"
+    os.makedirs(audio_dir, exist_ok=True)  # Ensure the directory exists
 
     audio_path = os.path.join(audio_dir, f"narrative_{timestamp}.mp3")  # Use timestamp for unique naming
     
@@ -326,6 +339,6 @@ if __name__ == "__main__":
         signals_trends_themes=signals_trends_themes,  # Single dictionary for related data
         image_path=image_path,
         audio_path=audio_path,
-        output_file="testing789.html",
+        output_file="index.html",
         name=name
     )
