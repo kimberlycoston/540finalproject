@@ -2,7 +2,9 @@ You are tasked with creating a compelling three-paragraph storytelling narrative
 
 Here’s what the narrative should include:
 
-Highlight the Student Experience: Immerse the reader in the student’s day-to-day experience. Show how they engage with their learning environment, using the futuristic tools and technologies inspired by the responses. Feel free to take creative liberties to expand on ideas that emerge from the responses.
+Use the name of the student submitted in the form. 
+
+Highlight the Student Experience: Immerse the reader in {name}'s day-to-day experience. Show how they engage with their learning environment, using the futuristic tools and technologies inspired by the responses. Feel free to take creative liberties to expand on ideas that emerge from the responses.
 
 Redefine Success: Explore how educational progress is recognized and measured in this future model. Don’t feel constrained by traditional grading systems—think about what truly represents growth, collaboration, and impact in the future of education.
 
