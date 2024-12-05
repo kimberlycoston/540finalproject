@@ -69,13 +69,14 @@
             font-style: normal;
             font-size: 12em; /* Larger font size */
             color: #FFFFFF; /* White text */
-            margin-bottom: 5px;
+            margin-bottom: 0;
             line-height: 0.8; /* Adjust line height for better readability */
         }
 
         .intro p {
-            margin-top: 15px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            font-family: 'Lato', sans-serif;
             font-size: 1.6em;
             font-style: italic;
             line-height: 1.5;
@@ -88,12 +89,11 @@
             display: flex;
             justify-content: space-around; /* Evenly distribute space between sections */
             align-items: flex-start; /* Align items at the top */
-            margin: 20px auto; /* Add some space around the section */
+            margin: 0 auto; /* Add some space around the section */
             padding: 10px;
             max-width: 1000px; /* Limit the section's width */
             background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+            border-radius: 0; /* Rounded corners */
             color: #FFFFFF; /* White text for contrast */
         }
 
@@ -114,9 +114,10 @@
 
         /* Paragraphs for Concepts */
         .concept p {
-            font-family: 'Roboto Condensed', sans-serif; /* Use Roboto for body text */
+            font-family: 'Lato', sans-serif;
             font-size: 1em; /* Standard text size */
             line-height: 1.5; /* Improve readability */
+            text-align: center;
             color: #FFFFFF; /* White text */
         }
 
@@ -136,21 +137,36 @@
         }
 
         /* Storyboard Section Styling */
-        .storyboard-section {
+        .storyboard-content {
+            font-size: 1.3em;
+            font-family: 'Lato', sans-serif;
             max-width: 100%; /* Limit width for better readability */
-            margin: 40px auto; /* Center section with vertical spacing */
-            padding: 20px 100px; /* Add padding inside the section */
+            margin: 0 auto; /* Center section with vertical spacing */
+            padding: 40px 200px; /* Add padding inside the section */
             background: rgba(0, 0, 0, 0.8); /* Dark transparent background */
-            border-radius: 12px; /* Smooth rounded corners */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Add a subtle shadow */
+            border-radius: 0; /* Smooth rounded corners */
             color: #FFFFFF; /* White text for readability */
             line-height: 1.4;
-            text-align: center;
+            text-align: justify;
+        }
+
+        /* Add flexbox for two side-by-side paragraphs */
+        .storyboard-subsection {
+            display: flex; /* Use flexbox layout */
+            justify-content: space-between; /* Space between the paragraphs */
+            gap: 20px; /* Add space between the two paragraphs */
+        }
+
+        /* Individual paragraphs inside the storyboard */
+        .storyboard-subsection p {
+            flex: 1; /* Make each paragraph take up equal width */
+            margin: 0; /* Remove any default margins */
+            padding: 10px; /* Add padding for spacing within each paragraph */
         }
 
         /* Story Entries */
         .entry {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             background: rgba(0, 0, 0, 0.8); /* Dark transparent background */
@@ -177,6 +193,7 @@
         .entry p {
             text-align: justify;
             font-size: 1em;
+            font-family: 'Lato', sans-serif;
             margin-bottom: 15px;
             line-height: 1.4;
             color: #FFFFFF; /* White text */
@@ -196,6 +213,7 @@
 
         .entry .section p {
             margin-bottom: 10px;
+            font-family: 'Lato', sans-serif;
             text-align: justify;
             font-size: 1em;
             color: #FFFFFF; /* White text */
@@ -241,21 +259,66 @@
 </div>
 
     <!-- All Storyboard Entries Section -->
-    <div class="storyboard-section">
+    <div class="storyboard-content">
+        <div class="storyboard-subsection">
         <p>
             This site showcases a collection of student-directed visions for the future of higher education in 2040. Using your responses to a series of thought-provoking questions, we’ve generated compelling storylines and imagery that illustrate potential pathways education might take in the decades to come.
         </p>
         <p>
-            Each story identifies key signals, trends, and themes that suggest how these imagined futures could become reality. Whether you’re exploring these futures for inspiration, curiosity, or insight, you’ll discover how today’s choices shape tomorrow’s learning environments.
-        </p>
-        <p>
-            Take a look around, immerse yourself in these narratives, and see how the signals of today point toward the possibilities of tomorrow!
+            Each story identifies key signals, trends, and themes that suggest how these imagined futures could become reality. Whether you’re exploring these futures for inspiration, curiosity, or insight, you’ll discover how today’s choices shape point towards the possibilities of tomorrow!
         </p>
     </div>
 
 <!-- Storyboard Entries -->
     <main class="storyboard-section">
         <!-- Existing entries can go here -->
+        <div class="entry">
+            <h1>Kimberly's Storyboard Entry</h1>
+            <img class="narrative_image" src="assets/images/narrative_image_1733357803.png" alt="Generated Illustration for Narrative">
+            <p><p>In the idyllic space of Self-Discovery Sphere, the university of the future, Kimberly, a charismatic sophomore, steps into her Creativity Pod named ‘Cosmic Cadets’. This magnetic hub of like-minded astronomy enthusiasts uses high-tech tools like VR labs to simulate the universe's expansiveness and AI mentors programmed with the vast knowledge of astrophysics to guide their passion-driven projects on tracking celestial bodies. The beauty of this mode of learning was its unfettered freedom, with professors more as advisors initiating a shared process of exploration rather than a unilateral transfer of information.</p><p>In this utopia of learning, the university no longer anchors its measure of prowess on archaic tools such as grades or standardized tests. Instead, the system takes a paradigm shift to reference the Impact Dashboards on a social media platform, ‘OurSpace’. As Kimberly completes each project in her Creativity Pod, her Impact Dashboard gleams with badges she's earned for demonstrated resilience, effective collaboration and real-world impacts - from predicting meteor showers to improving EO Telescope lenses. This innovative approach fostered intrinsic motivation by focusing on personal growth and practical applications rather than abstract grading scales.</p><p>However, this passion-driven future education does invite critical considerations. Accessibility is pivotal; ensuring all students can access the state-of-the-art tools and technologies, so none misses out due to financial restraints. Ensuring inclusivity, so students of all backgrounds have their Creativity Pods to fit into without feeling alienated, is key. The biggest challenge, perhaps, would be to create an environment where individuals feel driven to learn and contribute without resorting to competition or self-promotion, as people often naturally veer towards these aspects. Despite these potential obstacles, the promise of a world idyllic with the joy of learning, the thrill of exploration and the kinship of collaboration makes Self-Discovery Sphere an educational revolution worth aspiring and striving for.</p></p>
+            <div class="signals-trends-themes">
+                <div class="concept signals">
+                    <h3>SIGNALS</h3>
+                    <p>1. Virtual Reality (VR) in Education: The use of VR in education has been increasingly adopted in recent years. Schools and universities have incorporated VR to create simulated environments for students to experience various scenarios or learn intricacies of subjects that are hard to grasp theoretically. For instance, medical students use VR to perform virtual surgeries, which offers a practical, risk-free learning experience. This aligns with the narrative where VR labs are used in the Creativity Pods to simulate the universe's expansiveness and study the celestial bodies.
+    
+    2. Artificial Intelligence (AI) in Education: AI's role in education has been expanding, with AI tutors and mentors providing personalized learning experiences. For example, the Georgia Institute of Technology implemented an AI teaching assistant, 'Jill Watson', to address students' queries. Similarly, in the narrative, AI mentors with knowledge of astrophysics guide students in their passion-driven projects on astrophysics.
+    
+    3. New forms of Student Evaluation: There is growing disapproval of the traditional grading system and more educational establishments are exploring alternatives. Badges and certifications conferred upon the completion of certain tasks is one such approach gaining popularity. The 'Impact Dashboards' and badges in the narrative resonate with this. Additionally, platforms like LinkedIn enable users to showcase their skills, experiences, and certifications, which echo the social media platform 'OurSpace' in the narrative where students display their achievements and impacts on real-world projects.
+    
+    4. Ensuring Accessibility in Digital Education: Accessibility issues in digital education were thrown into sharp relief during the Covid-19 pandemic. Measures taken include providing devices, implementing modified teaching methods, launching programs to bridge the digital divide and significant discussion on policy level. This aligns with the narrative's anticipation of ensuring access to advanced tools and technologies for all students, irrespective of their financial abilities.</p>
+                </div>
+                <div class="concept trends">
+                    <h3>TRENDS</h3>
+                    <p>This narrative reflects a number of broader societal and educational shifts in the last five years that are likely to influence the scenario envisioned for 2040. These include a greater emphasis on individualized and student-centric learning, the increasing integration of technology (specifically AI and VR) in education, the de-emphasizing of traditional grading systems, and the growing importance of digital literacy and access to technology.
+    
+    In recent years, there has been an increasing push for more personalized and student-centric learning. This is particularly reflected in the concept of ‘Creativity Pods’ and the individualized projects Kimberly undertakes. Such educational methods encourage passion-driven learning and exploration in various areas of interest.
+    
+    The advent and advancement of artificial intelligence and virtual reality tools in education also show potential for a revolutionary change in teaching and learning practices. The inclusion of VR labs and AI mentors in the narrative demonstrates a movement toward high-tech, experiential learning environments.
+    
+    There is also a burgeoning discontent with traditional grading systems, viewing them as inadequate measures of a student's abilities or potential. Instead, educators are leaning toward more holistic assessments that value resilience, collaboration, and real-world impacts, similar to the 'Impact Dashboards' mentioned in the narrative.
+    
+    Lastly, the narrative hints at the increasing importance of digital literacy and access to technology. The inclusion of a social media platform in the education model suggests a shift towards digital, socially-connected learning environments. However, the narrative also underscores the challenges of such a system, particularly ensuring the universality of access - a concern that mirrors ongoing discussions around the issue of the ‘digital divide’ in our society.</p>
+                </div>
+                <div class="concept themes">
+                    <h3>THEMES</h3>
+                    <p>The envisioned 2040 education scenario in this narrative encompasses several overarching themes:
+    
+    1. Passion-Driven Learning: The narrative emphasizes the individual's passion for learning as the driving force behind education. Education moves away from a traditional structural model where teachers transfer information to students. Instead, it becomes an exploration process, with mentors acting as guides. Students join Creativity Pods, spaces that fostered interest-based collaborative learning, thus igniting and nurturing their passion for certain subjects.
+    
+    2. Innovative Assessment Techniques: The narrative presents a shift away from the conventional system of evaluation using grades or standardized tests. Instead, it introduces Impact Dashboards, where students earn badges for resilience, collaboration, and practical applications. This theme reflects a shift towards the assessment of real-world skills and impacts rather than abstract knowledge.
+    
+    3. Inclusivity and Accessibility: The scenario discusses the importance of making the learning environment accessible and inclusive for all students. This requires the availability of state-of-the-art tools and technologies to all students, regardless of their financial means. It also encompasses the need for every student to find their place in this educational setting without feeling alienated.
+    
+    4. Social Learning and Collaboration: The narrative underscores that the joy of learning comes from a shared process of exploration. This involves not only mutual support but also collaborative problem-solving, as illustrated when Kimberly and her peers work together on passion-driven projects.
+    
+    5. The Challenge of Competition: Lastly, the narrative presents a concern that students may inherently veer towards competition and self-promotion in the absence of traditional assessment methods. This theme underscores the need for creating an environment that encourages learning and contribution without resorting to a competitive mindset.</p>
+                </div>
+            </div>
+            <audio controls>
+                <source src="assets/audio/narrative_1733357819.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
     <div class="entry">
         <h1>Alex's Storyboard Entry</h1>
@@ -344,54 +407,7 @@ Lastly, the 'Redefinition of Success' appears as a crucial theme where success m
             Your browser does not support the audio element.
         </audio>
     </div>
-    
-    <div class="entry">
-        <h1>Kimberly's Storyboard Entry</h1>
-        <img class="narrative_image" src="assets/images/narrative_image_1733357803.png" alt="Generated Illustration for Narrative">
-        <p><p>In the idyllic space of Self-Discovery Sphere, the university of the future, Kimberly, a charismatic sophomore, steps into her Creativity Pod named ‘Cosmic Cadets’. This magnetic hub of like-minded astronomy enthusiasts uses high-tech tools like VR labs to simulate the universe's expansiveness and AI mentors programmed with the vast knowledge of astrophysics to guide their passion-driven projects on tracking celestial bodies. The beauty of this mode of learning was its unfettered freedom, with professors more as advisors initiating a shared process of exploration rather than a unilateral transfer of information.</p><p>In this utopia of learning, the university no longer anchors its measure of prowess on archaic tools such as grades or standardized tests. Instead, the system takes a paradigm shift to reference the Impact Dashboards on a social media platform, ‘OurSpace’. As Kimberly completes each project in her Creativity Pod, her Impact Dashboard gleams with badges she's earned for demonstrated resilience, effective collaboration and real-world impacts - from predicting meteor showers to improving EO Telescope lenses. This innovative approach fostered intrinsic motivation by focusing on personal growth and practical applications rather than abstract grading scales.</p><p>However, this passion-driven future education does invite critical considerations. Accessibility is pivotal; ensuring all students can access the state-of-the-art tools and technologies, so none misses out due to financial restraints. Ensuring inclusivity, so students of all backgrounds have their Creativity Pods to fit into without feeling alienated, is key. The biggest challenge, perhaps, would be to create an environment where individuals feel driven to learn and contribute without resorting to competition or self-promotion, as people often naturally veer towards these aspects. Despite these potential obstacles, the promise of a world idyllic with the joy of learning, the thrill of exploration and the kinship of collaboration makes Self-Discovery Sphere an educational revolution worth aspiring and striving for.</p></p>
-        <div class="signals-trends-themes">
-            <div class="concept signals">
-                <h3>SIGNALS</h3>
-                <p>1. Virtual Reality (VR) in Education: The use of VR in education has been increasingly adopted in recent years. Schools and universities have incorporated VR to create simulated environments for students to experience various scenarios or learn intricacies of subjects that are hard to grasp theoretically. For instance, medical students use VR to perform virtual surgeries, which offers a practical, risk-free learning experience. This aligns with the narrative where VR labs are used in the Creativity Pods to simulate the universe's expansiveness and study the celestial bodies.
 
-2. Artificial Intelligence (AI) in Education: AI's role in education has been expanding, with AI tutors and mentors providing personalized learning experiences. For example, the Georgia Institute of Technology implemented an AI teaching assistant, 'Jill Watson', to address students' queries. Similarly, in the narrative, AI mentors with knowledge of astrophysics guide students in their passion-driven projects on astrophysics.
-
-3. New forms of Student Evaluation: There is growing disapproval of the traditional grading system and more educational establishments are exploring alternatives. Badges and certifications conferred upon the completion of certain tasks is one such approach gaining popularity. The 'Impact Dashboards' and badges in the narrative resonate with this. Additionally, platforms like LinkedIn enable users to showcase their skills, experiences, and certifications, which echo the social media platform 'OurSpace' in the narrative where students display their achievements and impacts on real-world projects.
-
-4. Ensuring Accessibility in Digital Education: Accessibility issues in digital education were thrown into sharp relief during the Covid-19 pandemic. Measures taken include providing devices, implementing modified teaching methods, launching programs to bridge the digital divide and significant discussion on policy level. This aligns with the narrative's anticipation of ensuring access to advanced tools and technologies for all students, irrespective of their financial abilities.</p>
-            </div>
-            <div class="concept trends">
-                <h3>TRENDS</h3>
-                <p>This narrative reflects a number of broader societal and educational shifts in the last five years that are likely to influence the scenario envisioned for 2040. These include a greater emphasis on individualized and student-centric learning, the increasing integration of technology (specifically AI and VR) in education, the de-emphasizing of traditional grading systems, and the growing importance of digital literacy and access to technology.
-
-In recent years, there has been an increasing push for more personalized and student-centric learning. This is particularly reflected in the concept of ‘Creativity Pods’ and the individualized projects Kimberly undertakes. Such educational methods encourage passion-driven learning and exploration in various areas of interest.
-
-The advent and advancement of artificial intelligence and virtual reality tools in education also show potential for a revolutionary change in teaching and learning practices. The inclusion of VR labs and AI mentors in the narrative demonstrates a movement toward high-tech, experiential learning environments.
-
-There is also a burgeoning discontent with traditional grading systems, viewing them as inadequate measures of a student's abilities or potential. Instead, educators are leaning toward more holistic assessments that value resilience, collaboration, and real-world impacts, similar to the 'Impact Dashboards' mentioned in the narrative.
-
-Lastly, the narrative hints at the increasing importance of digital literacy and access to technology. The inclusion of a social media platform in the education model suggests a shift towards digital, socially-connected learning environments. However, the narrative also underscores the challenges of such a system, particularly ensuring the universality of access - a concern that mirrors ongoing discussions around the issue of the ‘digital divide’ in our society.</p>
-            </div>
-            <div class="concept themes">
-                <h3>THEMES</h3>
-                <p>The envisioned 2040 education scenario in this narrative encompasses several overarching themes:
-
-1. Passion-Driven Learning: The narrative emphasizes the individual's passion for learning as the driving force behind education. Education moves away from a traditional structural model where teachers transfer information to students. Instead, it becomes an exploration process, with mentors acting as guides. Students join Creativity Pods, spaces that fostered interest-based collaborative learning, thus igniting and nurturing their passion for certain subjects.
-
-2. Innovative Assessment Techniques: The narrative presents a shift away from the conventional system of evaluation using grades or standardized tests. Instead, it introduces Impact Dashboards, where students earn badges for resilience, collaboration, and practical applications. This theme reflects a shift towards the assessment of real-world skills and impacts rather than abstract knowledge.
-
-3. Inclusivity and Accessibility: The scenario discusses the importance of making the learning environment accessible and inclusive for all students. This requires the availability of state-of-the-art tools and technologies to all students, regardless of their financial means. It also encompasses the need for every student to find their place in this educational setting without feeling alienated.
-
-4. Social Learning and Collaboration: The narrative underscores that the joy of learning comes from a shared process of exploration. This involves not only mutual support but also collaborative problem-solving, as illustrated when Kimberly and her peers work together on passion-driven projects.
-
-5. The Challenge of Competition: Lastly, the narrative presents a concern that students may inherently veer towards competition and self-promotion in the absence of traditional assessment methods. This theme underscores the need for creating an environment that encourages learning and contribution without resorting to a competitive mindset.</p>
-            </div>
-        </div>
-        <audio controls>
-            <source src="assets/audio/narrative_1733357819.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
     </main>
 </body>
 </html>
